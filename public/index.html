@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>North Operations Control Center</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<aside class="sidebar">
+  <div class="brand"><div class="logo">CD</div><div><b>CarDekho</b><span>Operations</span></div></div>
+  <div class="nav active">Dashboard</div>
+  <div class="sync">● <span id="syncText">Connecting...</span></div>
+</aside>
+<main class="main">
+  <header>
+    <div><h1>NORTH OPERATIONS CONTROL CENTER</h1><p>Google Sheet powered operations dashboard</p></div>
+    <button id="refresh">↻ Refresh</button>
+  </header>
+
+  <section class="toolbar">
+    <input id="search" placeholder="Search vehicle, client, TPA, state, status, remarks...">
+    <select id="client"><option value="">All Clients</option></select>
+    <select id="tpa"><option value="">All TPA</option></select>
+    <select id="status"><option value="">All Status</option></select>
+    <select id="state"><option value="">All States</option></select>
+    <select id="follow"><option value="">All Follow-up</option><option value="Due">Due</option><option value="Upcoming">Upcoming</option><option value="No Follow-up">No Follow-up</option></select>
+    <label class="datebox">From <input type="date" id="fromDate" aria-label="From date"></label>
+    <label class="datebox">To <input type="date" id="toDate" aria-label="To date"></label>
+    <button id="clear">Clear</button>
+  </section>
+
+  <section class="kpis">
+    <div><span>Total Cases</span><strong id="total">0</strong></div>
+    <div><span>Follow-up Due</span><strong id="due">0</strong></div>
+    <div><span>Pending</span><strong id="pending">0</strong></div>
+    <div><span>Completed</span><strong id="completed">0</strong></div>
+    <div><span>Cancelled</span><strong id="cancelled">0</strong></div>
+  </section>
+
+  <section class="charts">
+    <div class="card"><h3>Status Overview</h3><div id="statusChart"></div></div>
+    <div class="card"><h3>State-wise Cases</h3><div id="stateChart"></div></div>
+  </section>
+
+  <section class="card tablecard">
+    <div class="tablehead"><h3>Case Details</h3><button id="download">Download Excel</button></div>
+    <div class="tablewrap">
+      <table><thead><tr>
+        <th>Client Name</th><th>State</th><th>Vehicle Number</th><th>TPA Name</th>
+        <th>Status</th><th>Request Date</th><th>Remarks</th><th>Follow-up</th><th>Next Follow-up</th>
+      </tr></thead><tbody id="tbody"></tbody></table>
+    </div>
+  </section>
+</main>
+<script src="/app.js"></script>
+</body>
+</html>
