@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>North Operations Control Center</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="cd-mark"><span></span></div>
+      <div class="brand-copy">
+        <div class="brand-name">CarDekho</div>
+        <div class="brand-sub">Operations Control Center</div>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a class="nav-item active" href="#dashboard">
+        <span class="nav-icon">⌂</span><span>Dashboard</span>
+      </a>
+      <a class="nav-item" href="#filters">
+        <span class="nav-icon">☷</span><span>Search &amp; Filters</span>
+      </a>
+      <a class="nav-item" href="#caseDetails">
+        <span class="nav-icon">▤</span><span>Case Details</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="footer-car">▱</div>
+      <strong>CarDekho</strong>
+      <span>North Operations</span>
+      <small>Better Control. Better Decisions.</small>
+    </div>
+  </aside>
+
+  <main class="main" id="dashboard">
+    <header class="topbar">
+      <div class="page-title">
+        <div class="eyebrow">NORTH OPERATIONS</div>
+        <h1>Operations Control Center</h1>
+        <p>Real-time follow-up and case monitoring dashboard</p>
+      </div>
+
+      <div class="top-actions">
+        <div class="top-search">
+          <span>⌕</span>
+          <input id="search" placeholder="Search by vehicle, client, TPA, state, status..." aria-label="Search cases">
+        </div>
+        <button class="icon-btn" id="refresh" title="Refresh dashboard">↻</button>
+        <div class="user-chip">
+          <div class="user-avatar">NO</div>
+          <div><strong>Operations</strong><span>North Team</span></div>
+        </div>
+      </div>
+    </header>
+
+    <section class="toolbar" id="filters">
+      <div class="filter-heading">
+        <span class="filter-icon">⚙</span>
+        <div><strong>Case Filters</strong><small>Filter cases by client, TPA, status, state and date</small></div>
+      </div>
+      <select id="client"><option value="">All Clients</option></select>
+      <select id="tpa"><option value="">All TPA</option></select>
+      <select id="status"><option value="">All Status</option></select>
+      <select id="state"><option value="">All States</option></select>
+      <select id="follow"><option value="">All Follow-up</option><option value="Due">Due</option><option value="Upcoming">Upcoming</option><option value="No Follow-up">No Follow-up</option></select>
+      <label class="datebox"><span>From</span><input type="date" id="fromDate" aria-label="From date"></label>
+      <label class="datebox"><span>To</span><input type="date" id="toDate" aria-label="To date"></label>
+      <button id="clear" class="clear-btn">Clear</button>
+    </section>
+
+    <section class="kpis">
+      <div class="kpi-card">
+        <div class="kpi-icon blue">▤</div>
+        <div><span>Total Cases</span><strong id="total">0</strong><small>Current filtered cases</small></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon orange">◷</div>
+        <div><span>Follow-up Due</span><strong id="due">0</strong><small>Requires action</small></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon green">✓</div>
+        <div><span>Pending</span><strong id="pending">0</strong><small>Open / pending cases</small></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon purple">↻</div>
+        <div><span>Completed</span><strong id="completed">0</strong><small>Completed cases</small></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon red">!</div>
+        <div><span>Cancelled</span><strong id="cancelled">0</strong><small>Cancelled cases</small></div>
+      </div>
+    </section>
+
+    <section class="charts">
+      <div class="card chart-card">
+        <div class="card-head"><div><h3>Case Status Overview</h3><p>Current status distribution</p></div><span class="head-icon">◔</span></div>
+        <div id="statusChart"></div>
+      </div>
+      <div class="card chart-card">
+        <div class="card-head"><div><h3>State-wise Cases</h3><p>Cases by operating state</p></div><span class="head-icon">⌖</span></div>
+        <div id="stateChart"></div>
+      </div>
+    </section>
+
+    <section class="card tablecard" id="caseDetails">
+      <div class="tablehead">
+        <div>
+          <h3>Case Details</h3>
+          <p>North Follow-up Dashboard cases</p>
+        </div>
+        <div class="table-actions">
+          <span id="syncText" class="sync-badge">Connecting...</span>
+          <button id="download" class="download-btn">⇩ Download Excel</button>
+        </div>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr>
+            <th>Client Name</th><th>State</th><th>Vehicle Number</th><th>TPA Name</th>
+            <th>Status</th><th>Request Date</th><th>Remarks</th><th>Follow-up</th><th>Next Follow-up</th>
+          </tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
