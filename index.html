@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>North Operations Control Center</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">CD</div>
+        <div>
+          <div class="brand-name">CarDekho</div>
+          <div class="brand-sub">Operations Control Center</div>
+        </div>
+      </div>
+      <nav>
+        <a class="active">Dashboard</a>
+      </nav>
+      <div class="side-note">
+        <span class="live-dot"></span>
+        Live Google Sheet sync
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <h1>North Operations Control Center</h1>
+          <p>Live operational view powered by the North Follow-up Dashboard Google Sheet.</p>
+        </div>
+        <div class="sync-box">
+          <span id="syncDot" class="sync-dot"></span>
+          <div>
+            <strong id="syncText">Connecting...</strong>
+            <small id="syncTime">Waiting for first sync</small>
+          </div>
+          <button id="refreshBtn" class="refresh-btn">↻ Refresh</button>
+        </div>
+      </header>
+
+      <section class="search-row">
+        <div class="search-wrap">
+          <span>⌕</span>
+          <input id="search" type="search" placeholder="Search vehicle, client, TPA, state, city, status or remarks...">
+        </div>
+      </section>
+
+      <section class="filters">
+        <select id="clientFilter"><option value="">All Clients</option></select>
+        <select id="tpaFilter"><option value="">All TPA</option></select>
+        <select id="statusFilter"><option value="">All Status</option></select>
+        <select id="stateFilter"><option value="">All States</option></select>
+        <select id="followFilter">
+          <option value="">All Follow-up</option>
+          <option value="Due">Due</option>
+          <option value="Upcoming">Upcoming</option>
+          <option value="No Follow-up">No Follow-up</option>
+        </select>
+        <input id="dateFrom" type="date" title="Request date from">
+        <input id="dateTo" type="date" title="Request date to">
+        <button id="clearFilters" class="clear-btn">Clear</button>
+      </section>
+
+      <section class="kpis">
+        <div class="kpi"><span>Total Cases</span><strong id="total">0</strong></div>
+        <div class="kpi"><span>Follow-up Due</span><strong id="due">0</strong></div>
+        <div class="kpi"><span>Pending</span><strong id="pending">0</strong></div>
+        <div class="kpi"><span>Completed</span><strong id="completed">0</strong></div>
+        <div class="kpi"><span>Cancelled</span><strong id="cancelled">0</strong></div>
+      </section>
+
+      <section class="grid">
+        <div class="card">
+          <div class="card-head"><h2>Case Status Overview</h2></div>
+          <div id="statusChart" class="bars"></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h2>State-wise Cases</h2></div>
+          <div id="stateChart" class="bars"></div>
+        </div>
+      </section>
+
+      <section class="card table-card">
+        <div class="card-head">
+          <div>
+            <h2>Case Details</h2>
+            <span id="resultCount" class="muted">0 cases</span>
+          </div>
+          <button id="exportBtn" class="export-btn">⇩ Download Excel</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Client Name</th>
+                <th>State</th>
+                <th>Vehicle Number</th>
+                <th>TPA Name</th>
+                <th>Status</th>
+                <th>Request Date</th>
+                <th>Remarks</th>
+                <th>Follow-up</th>
+                <th>Next Follow-up</th>
+              </tr>
+            </thead>
+            <tbody id="caseBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>
